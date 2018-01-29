@@ -9,6 +9,11 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    //fetch calls
+    
+  }
+
   render() {
     return (
       <div className="App">
