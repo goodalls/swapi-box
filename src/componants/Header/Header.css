@@ -1,0 +1,12 @@
+.header {
+  grid-column: 1/13;
+  grid-row: 1;
+  height: 50px;
+  color: #feda4a;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 2em;
+}

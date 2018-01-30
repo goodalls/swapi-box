@@ -13,15 +13,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchSwapi('https://swapi.co/api/people/1')
-      .then(people => {
-        this.fetchSwapi(people.species[0]).then(species => {
-          console.log(species);
-          console.log(people);//scope
-          //setState
-        });
-      })
-      .catch(error => console.log('bummer'));
+    // this.fetchSwapi('https://swapi.co/api/people/1')
+    //   .then(people => {
+    //     this.fetchSwapi(people.species[0]).then(species => {
+    //       console.log(species);
+    //       console.log(people);//scope
+    //       //setState
+    //     });
+    //   })
+    //   .catch(error => console.log('bummer'));
   }
 
   fetchSwapi(url) {
@@ -33,9 +33,8 @@ class App extends Component {
       <div className="App">
         <Header />
         <Control />
-        <Scrolling />
         <Container />
-        <Footer />
+        <Scrolling />
       </div>
     );
   }

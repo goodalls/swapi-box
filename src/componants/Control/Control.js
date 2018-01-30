@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Control.css';
 
 export class Control extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export class Control extends Component {
   
   render() {
     return (
-      <div>
+      <div className='control'>
         <button>People</button>
         <button>Planets</button>
         <button>Vehicles</button>
