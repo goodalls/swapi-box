@@ -28,6 +28,9 @@ const Scrolling = () => {
             aboard her starship, custodian of the stolen plans that can save her
             people and restore freedom to the galaxy…
           </p>
+          <p>Episode IV</p>
+          <h3>A NEW HOPE</h3>
+          <p>May 4, 1977</p>
         </div>
       </section>
     </div>
