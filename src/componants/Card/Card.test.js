@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Scrolling from './Scrolling';
+import Card from './Card';
 
-describe('Scrolling', () => {
+describe('Card', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Scrolling />, div);
+    ReactDOM.render(<Card />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 });
