@@ -3,7 +3,7 @@ import './Scrolling.css';
 
 const Scrolling = () => {
   return (
-    <div>
+    <div className='scrolling'>
       <div className="fade" />
 
       <section className="star-wars">

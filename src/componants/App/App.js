@@ -24,9 +24,9 @@ class App extends Component {
       .catch(error => console.log('bummer'));
   }
 
-  fetchSwapi(url) {
-    return fetch(url).then(response => response.json());
-  }
+  // fetchSwapi(url) {
+  //   return fetch(url).then(response => response.json());
+  // }
 
   render() {
     return (

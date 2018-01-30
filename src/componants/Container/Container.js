@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Container = () => {
   return (
-    <div>
+    <div className='container'>
       Container for the CARDS BRO!
     </div>
-  )
-}
+  );
+};
 
 Container.propTypes = {
 
-}
+};
 
-export default Container
+export default Container;

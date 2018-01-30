@@ -1,4 +1,6 @@
-body {
+.scrolling {
+  grid-column: 1/13;
+  grid-row: 3;
   width: 100%;
   height: 100%;
   background: #000;
