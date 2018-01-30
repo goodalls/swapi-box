@@ -1,6 +1,11 @@
 .control {
   grid-column: 1/13;
   grid-row: 2;
+  display: flex;
+  justify-content: center;
   height: 50px;
-  background-color: yellow;
+}
+
+button {
+  margin: 1%;
 }
