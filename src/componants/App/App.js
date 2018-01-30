@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Scrolling from '../Scrolling/Scrolling';
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">testing 1, 2, 3</div>;
+    return <div className="App"><Scrolling /></div>;
   }
 }
 
