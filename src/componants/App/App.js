@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Container from '../Container/Container';
 import Scrolling from '../Scrolling/Scrolling';
 import Control from '../Control/Control';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import './App.css';
 
@@ -13,19 +12,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // this.fetchSwapi('https://swapi.co/api/people/1')
-    //   .then(people => {
-    //     this.fetchSwapi(people.species[0]).then(species => {
-    //       console.log(species);
-    //       console.log(people);//scope
-    //       //setState
-    //     });
-    //   })
-    //   .catch(error => console.log('bummer'));
+    this.fetchSwapi('https://swapi.co/api/people/1')
+      .then(people => {
+        console.log(people); //scope
+        //setState
+      })
+      .catch(error => console.log('bummer'));
   }
 
-  fetchSwapi(url) {
-    return fetch(url).then(response => response.json());
+  async fetchSwapi(url) {
+    const fetched = await fetch(url);
+    const response = await fetched.json();
+    return response;
   }
 
   render() {
