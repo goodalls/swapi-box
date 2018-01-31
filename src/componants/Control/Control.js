@@ -2,10 +2,10 @@ import React from 'react';
 import './Control.css';
 import PropTypes from 'prop-types';
 
-const Control = ({ favorites }) => {
+const Control = ({ favorites, people }) => {
   return (
     <div className="control">
-      <button>People</button>
+      <button onClick={people}>People</button>
       <button>Planets</button>
       <button>Vehicles</button>
       <button>
@@ -16,6 +16,7 @@ const Control = ({ favorites }) => {
 };
 
 Control.propTypes = {
-  favorites: PropTypes.number
+  favorites: PropTypes.number,
+  people: PropTypes.func
 };
 export default Control;
