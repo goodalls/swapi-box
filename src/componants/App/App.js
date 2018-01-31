@@ -9,13 +9,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      crawl: {},
       favorites: [],
       errorStatus: ''
     };
   }
 
   async componentDidMount() {
-    // this.fetchScrollingText()
+    this.fetchScrollingText();
   }
 
   async fetchSwapi(url) {
@@ -24,11 +25,20 @@ class App extends Component {
       const response = await fetched.json();
       return response;
     } catch (error) {
-      this.setState({errorStatus: 'fetchSwapi Error'});
+      this.setState({ errorStatus: 'fetchSwapi Error' });
     }
   }
 
-  fetchScrollingText() {}
+  async fetchScrollingText() {
+    const random = Math.round(Math.random() * 7);
+    const crawl = await this.fetchSwapi(`https://swapi.co/api/films/${random}`);
+    return await this.setState({crawl: { 
+      title: crawl.title,
+      episodeId: crawl.episode_id,
+      openingCrawl: crawl.opening_crawl,
+      releaseDate: crawl.release_date
+    }});
+  }
 
   fetchPeopleCards = async () => {
     const people = await this.fetchSwapi('https://swapi.co/api/people');
@@ -52,7 +62,7 @@ class App extends Component {
           people={this.fetchPeopleCards}
         />
         <Container favorite={this.addToFavorites} />
-        <Scrolling />
+        <Scrolling text={this.state.crawl}/>
       </div>
     );
   }
