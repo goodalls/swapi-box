@@ -16,7 +16,7 @@ export class Control extends Component {
         <button>People</button>
         <button>Planets</button>
         <button>Vehicles</button>
-        <button>Favorites</button>
+        <button>Favorites <span className='favorite'>0</span></button>
       </div>
     );
   }
