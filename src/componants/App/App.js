@@ -27,11 +27,16 @@ class App extends Component {
     return response;
   }
 
+  fetchPeopleCards = () => {
+    console.log('fetchPeopleCards - Clicked');
+    
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Control favorites={this.state.favorites.length}/>
+        <Control favorites={this.state.favorites.length} people={this.fetchPeopleCards}/>
         <Container />
         <Scrolling />
       </div>
