@@ -8,12 +8,16 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      favorites: []
+    };
   }
 
   async componentDidMount() {
-    const initialFetch = await this.fetchSwapi('https://swapi.co/api/people/1');
-    console.log(initialFetch); //scope
+    const people1 = await this.fetchSwapi('https://swapi.co/api/people/1');
+    const ship = await this.fetchSwapi(people1.starships[0]);
+    console.log(people1); //scope
+    console.log(ship);
     //setState
   }
 
@@ -27,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Control />
+        <Control favorites={this.state.favorites.length}/>
         <Container />
         <Scrolling />
       </div>
