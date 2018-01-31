@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Container.css';
 
-const Container = () => {
+const Container = ({favorite}) => {
   return (
     <div className='container'>
       Container for the CARDS BRO!

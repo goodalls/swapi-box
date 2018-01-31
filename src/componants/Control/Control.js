@@ -1,25 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Control.css';
+import PropTypes from 'prop-types';
 
-export class Control extends Component {
-  constructor(props) {
-    super(props);
-  
-    this.state = {
-       
-    };
-  }
-  
-  render() {
-    return (
-      <div className='control'>
-        <button>People</button>
-        <button>Planets</button>
-        <button>Vehicles</button>
-        <button>Favorites</button>
-      </div>
-    );
-  }
-}
+const Control = ({ favorites, people }) => {
+  return (
+    <div className="control">
+      <button onClick={people}>People</button>
+      <button>Planets</button>
+      <button>Vehicles</button>
+      <button>
+        Favorites <span className="favorite">{favorites}</span>
+      </button>
+    </div>
+  );
+};
 
+Control.propTypes = {
+  favorites: PropTypes.number,
+  people: PropTypes.func
+};
 export default Control;
