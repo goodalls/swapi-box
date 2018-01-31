@@ -1,8 +1,10 @@
 .App {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-gap: 10px; }
+  grid-gap: 10px;
+}
 
 body {
   font-family: 'Pathway Gothic One', sans-serif;
-  background-color: #000; }
+  background-color: #000;
+}

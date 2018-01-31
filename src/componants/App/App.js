@@ -14,11 +14,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const people1 = await this.fetchSwapi('https://swapi.co/api/people/1');
-    const ship = await this.fetchSwapi(people1.starships[0]);
-    console.log(people1); //scope
-    console.log(ship);
-    //setState
+    // this.fetchScrollingText()
   }
 
   async fetchSwapi(url) {
@@ -27,17 +23,32 @@ class App extends Component {
     return response;
   }
 
-  fetchPeopleCards = () => {
-    console.log('fetchPeopleCards - Clicked');
-    
+  fetchScrollingText() {
+
+  }
+
+  fetchPeopleCards = async () => {
+    const people = await this.fetchSwapi('https://swapi.co/api/people');
+    const ship = await this.fetchSwapi(people.starships[0]);
+    console.log(people); //scope
+    console.log(ship);
+    //setState
+  };
+
+  addToFavorites = () => {
+    //get card object clicked on/selected 
+    //add object to state
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Control favorites={this.state.favorites.length} people={this.fetchPeopleCards}/>
-        <Container />
+        <Control
+          favorites={this.state.favorites.length}
+          people={this.fetchPeopleCards}
+        />
+        <Container favorite={this.addToFavorites}/>
         <Scrolling />
       </div>
     );
