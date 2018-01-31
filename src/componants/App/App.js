@@ -11,13 +11,10 @@ class App extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    this.fetchSwapi('https://swapi.co/api/people/1')
-      .then(people => {
-        console.log(people); //scope
-        //setState
-      })
-      .catch(error => console.log('bummer'));
+  async componentDidMount() {
+    const initialFetch = await this.fetchSwapi('https://swapi.co/api/people/1');
+    console.log(initialFetch); //scope
+    //setState
   }
 
   async fetchSwapi(url) {
