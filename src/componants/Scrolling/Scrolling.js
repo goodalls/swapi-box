@@ -2,7 +2,9 @@ import React from 'react';
 import './Scrolling.css';
 import PropTypes from 'prop-types';
 
-const Scrolling = ({ title, episodeId, openingCrawl, releaseDate }) => {
+const Scrolling = ({ text }) => {
+ const {title, episodeId, openingCrawl, releaseDate} = text;
+  
   return (
     <div className="scrolling">
       <div className="fade" />
@@ -25,10 +27,7 @@ const Scrolling = ({ title, episodeId, openingCrawl, releaseDate }) => {
 };
 
 Scrolling.propTypes = {
-  title: PropTypes.string,
-  episodeId: PropTypes.string,
-  openingCrawl: PropTypes.string,
-  releaseDate: PropTypes.string
+  text: PropTypes.object
 };
 
 export default Scrolling;
