@@ -9,7 +9,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: []
+      favorites: [],
+      errorStatus: ''
     };
   }
 
@@ -18,14 +19,16 @@ class App extends Component {
   }
 
   async fetchSwapi(url) {
-    const fetched = await fetch(url);
-    const response = await fetched.json();
-    return response;
+    try {
+      const fetched = await fetch(url);
+      const response = await fetched.json();
+      return response;
+    } catch (error) {
+      this.setState({errorStatus: 'fetchSwapi Error'});
+    }
   }
 
-  fetchScrollingText() {
-
-  }
+  fetchScrollingText() {}
 
   fetchPeopleCards = async () => {
     const people = await this.fetchSwapi('https://swapi.co/api/people');
@@ -36,9 +39,9 @@ class App extends Component {
   };
 
   addToFavorites = () => {
-    //get card object clicked on/selected 
+    //get card object clicked on/selected
     //add object to state
-  }
+  };
 
   render() {
     return (
@@ -48,7 +51,7 @@ class App extends Component {
           favorites={this.state.favorites.length}
           people={this.fetchPeopleCards}
         />
-        <Container favorite={this.addToFavorites}/>
+        <Container favorite={this.addToFavorites} />
         <Scrolling />
       </div>
     );
