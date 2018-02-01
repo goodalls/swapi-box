@@ -15,6 +15,7 @@ const Card = props => {
     );
   }
 };
+
 Card.propTypes = {
   favorite: PropTypes.func,
   homeworld: PropTypes.string,

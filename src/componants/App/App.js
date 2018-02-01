@@ -17,7 +17,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.fetchScrollingText();
+    // this.fetchScrollingText();
   }
 
   async fetchSwapi(url) {
@@ -43,7 +43,6 @@ class App extends Component {
   }
 
   fetchCards = async event => {
-    
     if (event.target.className === 'people') {
       const people = await this.fetchSwapi('https://swapi.co/api/people/');
       const peopleCards = people.results.map(async person => {
@@ -58,15 +57,11 @@ class App extends Component {
       });
       const unresolvedPromises = await Promise.all(peopleCards);
       this.setState({ people: unresolvedPromises });
-    }
-    else if (event.target.className === 'planets') {
+    } else if (event.target.className === 'planets') {
       console.log('planets clicked');
-    }
-    else if (event.target.className === 'vehicles') {
+    } else if (event.target.className === 'vehicles') {
       console.log('vehicles clicked');
     }
-
-
   };
 
   addToFavorites = () => {
@@ -76,17 +71,12 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <div className="App">
+    return <div className="App">
         <Header />
-        <Control
-          favorites={this.state.favorites.length}
-          fetch={this.fetchCards}
-        />
-        <Container favorite={this.addToFavorites} fetchedArray={this.state.fetchedArray} />
+        <Control favorites={this.state.favorites.length} fetch={this.fetchCards} />
+        <Container favorite={this.addToFavorites} array={this.state.fetchedArray} />
         <Scrolling text={this.state.crawl} />
-      </div>
-    );
+      </div>;
   }
 }
 
