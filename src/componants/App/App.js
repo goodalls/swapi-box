@@ -9,6 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      people: [],
       crawl: {},
       favorites: [],
       errorStatus: ''
@@ -16,7 +17,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.fetchScrollingText();
+    // this.fetchScrollingText();
   }
 
   async fetchSwapi(url) {
@@ -32,21 +33,29 @@ class App extends Component {
   async fetchScrollingText() {
     const random = Math.round(Math.random() * 7);
     const crawl = await this.fetchSwapi(`https://swapi.co/api/films/${random}`);
-    const object = { 
+    const object = {
       title: crawl.title,
       episodeId: crawl.episode_id,
       openingCrawl: crawl.opening_crawl,
       releaseDate: crawl.release_date
     };
-    this.setState({crawl: object});
+    this.setState({ crawl: object });
   }
 
   fetchPeopleCards = async () => {
-    const people = await this.fetchSwapi('https://swapi.co/api/people');
-    const ship = await this.fetchSwapi(people.starships[0]);
-    console.log(people); //scope
-    console.log(ship);
-    //setState
+    const people = await this.fetchSwapi('https://swapi.co/api/people/');
+    const peopleCards = people.results.map(async person => {
+      let homeworldFetch = await this.fetchSwapi(person.homeworld);
+      let speciesFetch = await this.fetchSwapi(person.species);
+      return {
+        name: person.name,
+        species: speciesFetch.name,
+        homeworld: homeworldFetch.name,
+        population: homeworldFetch.population
+      };
+    });
+    const unresolvedPromises = await Promise.all(peopleCards);
+    this.setState({ people: unresolvedPromises});
   };
 
   addToFavorites = () => {
@@ -62,8 +71,8 @@ class App extends Component {
           favorites={this.state.favorites.length}
           people={this.fetchPeopleCards}
         />
-        <Container favorite={this.addToFavorites} />
-        <Scrolling text={this.state.crawl}/>
+        <Container favorite={this.addToFavorites} people={this.state.people} />
+        <Scrolling text={this.state.crawl} />
       </div>
     );
   }
