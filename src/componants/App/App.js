@@ -4,6 +4,7 @@ import Scrolling from '../Scrolling/Scrolling';
 import Control from '../Control/Control';
 import Header from '../Header/Header';
 import './App.css';
+import api from '../../api';
 
 class App extends Component {
   constructor(props) {
@@ -21,19 +22,11 @@ class App extends Component {
     // this.fetchScrollingText();
   }
 
-  async fetchSwapi(url) {
-    try {
-      const fetched = await fetch(url);
-      const response = await fetched.json();
-      return response;
-    } catch (error) {
-      this.setState({ errorStatus: 'fetchSwapi Error' });
-    }
-  }
+ 
 
   async fetchScrollingText() {
     const random = Math.round(Math.random() * 7);
-    const crawl = await this.fetchSwapi(`https://swapi.co/api/films/${random}`);
+    const crawl = await api.fetchSwapi(`https://swapi.co/api/films/${random}`);
     const object = {
       title: crawl.title,
       episodeId: crawl.episode_id,
@@ -46,10 +39,10 @@ class App extends Component {
   fetchPeopleCards = async event => {
     const { name } = event.target;
     if (name === 'people') {
-      const people = await this.fetchSwapi('https://swapi.co/api/people/');
+      const people = await api.fetchSwapi('https://swapi.co/api/people/');
       const peopleCards = people.results.map(async person => {
-        let homeworldFetch = await this.fetchSwapi(person.homeworld);
-        let speciesFetch = await this.fetchSwapi(person.species);
+        let homeworldFetch = await api.fetchSwapi(person.homeworld);
+        let speciesFetch = await api.fetchSwapi(person.species);
         return {
           name: person.name,
           species: speciesFetch.name,
