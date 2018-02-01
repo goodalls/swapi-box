@@ -12,7 +12,8 @@ class App extends Component {
       people: [],
       crawl: {},
       favorites: [],
-      errorStatus: ''
+      errorStatus: '',
+      isActive: ''
     };
   }
 
@@ -42,20 +43,25 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async () => {
-    const people = await this.fetchSwapi('https://swapi.co/api/people/');
-    const peopleCards = people.results.map(async person => {
-      let homeworldFetch = await this.fetchSwapi(person.homeworld);
-      let speciesFetch = await this.fetchSwapi(person.species);
-      return {
-        name: person.name,
-        species: speciesFetch.name,
-        homeworld: homeworldFetch.name,
-        population: homeworldFetch.population
-      };
-    });
-    const unresolvedPromises = await Promise.all(peopleCards);
-    this.setState({ people: unresolvedPromises});
+  fetchPeopleCards = async event => {
+    if (event.target.className === 'people') {
+      const people = await this.fetchSwapi('https://swapi.co/api/people/');
+      const peopleCards = people.results.map(async person => {
+        let homeworldFetch = await this.fetchSwapi(person.homeworld);
+        let speciesFetch = await this.fetchSwapi(person.species);
+        return {
+          name: person.name,
+          species: speciesFetch.name,
+          homeworld: homeworldFetch.name,
+          population: homeworldFetch.population
+        };
+      });
+      const unresolvedPromises = await Promise.all(peopleCards);
+      this.setState({
+        people: unresolvedPromises,
+        isActive: 'people'
+      });
+    }
   };
 
   addToFavorites = () => {
