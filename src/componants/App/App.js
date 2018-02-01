@@ -34,7 +34,7 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async event => {
+  fetchCards = async event => {
     const { name } = event.target;
     if (name === 'people') {
       const people = await api.peopleCards()
@@ -57,7 +57,7 @@ class App extends Component {
         <Header />
         <Control
           favorites={this.state.favorites.length}
-          people={this.fetchPeopleCards}
+          cards={this.fetchCards}
           active={this.state.isActive}
         />
         <Container favorite={this.addToFavorites} people={this.state.people} />
