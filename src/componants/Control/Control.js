@@ -2,25 +2,25 @@ import React from 'react';
 import './Control.css';
 import PropTypes from 'prop-types';
 
-const Control = ({ favorites, people, active }) => {
+const Control = ({ favorites, cards, active }) => {
   return (
     <div className="control">
       <button
-        onClick={people}
+        onClick={cards}
         name="people"
         className={active === 'people' ? 'activeClass' : 'notActive'}
       >
         People
       </button>
       <button
-        onClick={people}
+        onClick={cards}
         name="planets"
         className={active === 'planets' ? 'activeClass' : 'notActive'}
       >
         Planets
       </button>
       <button
-        onClick={people}
+        onClick={cards}
         name="vehicles"
         className={active === 'vehicles' ? 'activeClass' : 'notActive'}
       >
@@ -38,7 +38,7 @@ const Control = ({ favorites, people, active }) => {
 
 Control.propTypes = {
   favorites: PropTypes.number,
-  people: PropTypes.func,
+  cards: PropTypes.func,
   active: PropTypes.string
 };
 export default Control;

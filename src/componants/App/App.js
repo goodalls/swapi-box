@@ -4,12 +4,13 @@ import Scrolling from '../Scrolling/Scrolling';
 import Control from '../Control/Control';
 import Header from '../Header/Header';
 import './App.css';
+import api from '../../api';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: [],
+      fetchedArray: [],
       crawl: {},
       favorites: [],
       errorStatus: '',
@@ -21,19 +22,9 @@ class App extends Component {
     // this.fetchScrollingText();
   }
 
-  async fetchSwapi(url) {
-    try {
-      const fetched = await fetch(url);
-      const response = await fetched.json();
-      return response;
-    } catch (error) {
-      this.setState({ errorStatus: 'fetchSwapi Error' });
-    }
-  }
-
   async fetchScrollingText() {
     const random = Math.round(Math.random() * 7);
-    const crawl = await this.fetchSwapi(`https://swapi.co/api/films/${random}`);
+    const crawl = await api.fetchSwapi(`https://swapi.co/api/films/${random}`);
     const object = {
       title: crawl.title,
       episodeId: crawl.episode_id,
@@ -43,27 +34,25 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async event => {
+  fetchCards = async event => {
     const { name } = event.target;
     if (name === 'people') {
-      const people = await this.fetchSwapi('https://swapi.co/api/people/');
-      const peopleCards = people.results.map(async person => {
-        let homeworldFetch = await this.fetchSwapi(person.homeworld);
-        let speciesFetch = await this.fetchSwapi(person.species);
-        return {
-          name: person.name,
-          species: speciesFetch.name,
-          homeworld: homeworldFetch.name,
-          population: homeworldFetch.population
-        };
-      });
-      const unresolvedPromises = await Promise.all(peopleCards);
+      const people = await api.peopleCards()
+      const unresolvedPromises = await Promise.all(people);
       this.setState({
-        people: unresolvedPromises,
+        fetchedArray: unresolvedPromises,
         isActive: 'people'
       });
-    }
+    } 
     
+    if (name === 'planets') {
+      const planets = await api.planetCards()
+      const unresolvedPromises = await Promise.all(planets);
+      this.setState({
+        fetchedArray: unresolvedPromises,
+        isActive: 'planets'
+      });
+    }
   };
 
   addToFavorites = () => {
@@ -77,10 +66,10 @@ class App extends Component {
         <Header />
         <Control
           favorites={this.state.favorites.length}
-          people={this.fetchPeopleCards}
+          cards={this.fetchCards}
           active={this.state.isActive}
         />
-        <Container favorite={this.addToFavorites} people={this.state.people} />
+        <Container favorite={this.addToFavorites} dataArray={this.state.fetchedArray} />
         <Scrolling text={this.state.crawl} />
       </div>
     );
