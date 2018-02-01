@@ -44,7 +44,8 @@ class App extends Component {
   }
 
   fetchPeopleCards = async event => {
-    if (event.target.className === 'people') {
+    const { name } = event.target;
+    if (name === 'people') {
       const people = await this.fetchSwapi('https://swapi.co/api/people/');
       const peopleCards = people.results.map(async person => {
         let homeworldFetch = await this.fetchSwapi(person.homeworld);
@@ -62,6 +63,7 @@ class App extends Component {
         isActive: 'people'
       });
     }
+    
   };
 
   addToFavorites = () => {
@@ -76,6 +78,7 @@ class App extends Component {
         <Control
           favorites={this.state.favorites.length}
           people={this.fetchPeopleCards}
+          active={this.state.isActive}
         />
         <Container favorite={this.addToFavorites} people={this.state.people} />
         <Scrolling text={this.state.crawl} />
