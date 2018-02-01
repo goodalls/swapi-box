@@ -7,3 +7,16 @@
 
 button {
   margin: 1%; }
+
+button {
+  background: yellow;
+  border-radius: 28px;
+  color: #000;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin: 0 1%; }
+
+button:hover {
+  background: #3cb0fd;
+  text-decoration: none; }

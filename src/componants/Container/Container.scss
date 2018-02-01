@@ -2,4 +2,7 @@
   grid-column: 1/13;
   grid-row: 4;
   height: 50px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
 }

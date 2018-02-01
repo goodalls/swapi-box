@@ -3,7 +3,7 @@ import './Card.css';
 
 const Card = ({favorite, homeworld, name, population, species}) => {
   return (
-    <div className="Card">
+    <div className="card">
       <p>Name{name}</p>
       <p>Homeworld: {homeworld}</p>
       <p>Population: {population}</p>

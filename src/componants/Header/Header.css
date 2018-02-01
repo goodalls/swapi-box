@@ -1,13 +1,15 @@
 .header {
   grid-column: 1/13;
   grid-row: 1;
-  height: 50px;
+  height: 250px;
   color: #feda4a;
   display: flex;
   justify-content: center;
   background-image: url("./may-the-forth-be-with-you.jpg");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: contain;
+  background-position: center;
+  width: 100%; }
 
 h1 {
   font-size: 2em; }
