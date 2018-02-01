@@ -22,8 +22,6 @@ class App extends Component {
     // this.fetchScrollingText();
   }
 
- 
-
   async fetchScrollingText() {
     const random = Math.round(Math.random() * 7);
     const crawl = await api.fetchSwapi(`https://swapi.co/api/films/${random}`);
@@ -39,24 +37,13 @@ class App extends Component {
   fetchPeopleCards = async event => {
     const { name } = event.target;
     if (name === 'people') {
-      const people = await api.fetchSwapi('https://swapi.co/api/people/');
-      const peopleCards = people.results.map(async person => {
-        let homeworldFetch = await api.fetchSwapi(person.homeworld);
-        let speciesFetch = await api.fetchSwapi(person.species);
-        return {
-          name: person.name,
-          species: speciesFetch.name,
-          homeworld: homeworldFetch.name,
-          population: homeworldFetch.population
-        };
-      });
-      const unresolvedPromises = await Promise.all(peopleCards);
+      const people = await api.peopleCards()
+      const unresolvedPromises = await Promise.all(people);
       this.setState({
         people: unresolvedPromises,
         isActive: 'people'
       });
     }
-    
   };
 
   addToFavorites = () => {

@@ -8,4 +8,19 @@ const fetchSwapi = async url => {
   }
 };
 
-export default {fetchSwapi};
+const peopleCards = async () => {
+  const people = await fetchSwapi('https://swapi.co/api/people/');
+  const peopleCards = people.results.map(async person => {
+    let homeworldFetch = await fetchSwapi(person.homeworld);
+    let speciesFetch = await fetchSwapi(person.species);
+    return {
+      name: person.name,
+      species: speciesFetch.name,
+      homeworld: homeworldFetch.name,
+      population: homeworldFetch.population
+    };
+  });
+  return peopleCards;
+};
+
+export default { fetchSwapi, peopleCards };
