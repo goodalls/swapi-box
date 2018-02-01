@@ -42,23 +42,27 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async () => {
-    const people = await this.fetchSwapi('https://swapi.co/api/people/');
-    const peopleCards = people.results.map(async person => {
-      let homeworldFetch = await this.fetchSwapi(person.homeworld);
-      let speciesFetch = await this.fetchSwapi(person.species);
-      return {
-        name: person.name,
-        species: speciesFetch.name,
-        homeworld: homeworldFetch.name,
-        population: homeworldFetch.population
-      };
-    });
-    const unresolvedPromises = await Promise.all(peopleCards);
-    this.setState({ people: unresolvedPromises});
+  fetchCards = async event => {
+    
+    if (event.target.className === 'people') {
+      const people = await this.fetchSwapi('https://swapi.co/api/people/');
+      const peopleCards = people.results.map(async person => {
+        let homeworldFetch = await this.fetchSwapi(person.homeworld);
+        let speciesFetch = await this.fetchSwapi(person.species);
+        return {
+          name: person.name,
+          species: speciesFetch.name,
+          homeworld: homeworldFetch.name,
+          population: homeworldFetch.population
+        };
+      });
+      const unresolvedPromises = await Promise.all(peopleCards);
+      this.setState({ people: unresolvedPromises });
+    }
   };
 
   addToFavorites = () => {
+    console.log('favorites clicked');
     //get card object clicked on/selected
     //add object to state
   };
@@ -69,7 +73,7 @@ class App extends Component {
         <Header />
         <Control
           favorites={this.state.favorites.length}
-          people={this.fetchPeopleCards}
+          fetch={this.fetchCards}
         />
         <Container favorite={this.addToFavorites} people={this.state.people} />
         <Scrolling text={this.state.crawl} />

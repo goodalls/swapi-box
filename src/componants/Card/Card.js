@@ -14,7 +14,7 @@ const Card = ({favorite, homeworld, name, population, species}) => {
   );
 };
 Card.propTypes = {
-  favorite: PropTypes.string,
+  favorite: PropTypes.func,
   homeworld: PropTypes.string,
   name: PropTypes.string,
   population: PropTypes.string,

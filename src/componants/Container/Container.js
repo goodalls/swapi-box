@@ -5,9 +5,9 @@ import Card from '../Card/Card';
 
 const Container = ({favorite, people}) => {
   const peopleCards = people.map(person=>{
-    return <Card {...person} key={person.name}/>;
+    return <Card {...person} key={person.name} favorite={favorite}/>;
   });
-  
+
   return (
     <div className='container'>
       {peopleCards}

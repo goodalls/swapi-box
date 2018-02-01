@@ -2,12 +2,18 @@ import React from 'react';
 import './Control.css';
 import PropTypes from 'prop-types';
 
-const Control = ({ favorites, people }) => {
+const Control = ({ favorites, fetch }) => {
   return (
     <div className="control">
-      <button onClick={people}>People</button>
-      <button>Planets</button>
-      <button>Vehicles</button>
+      <button onClick={fetch} className="people">
+        People
+      </button>
+      <button onClick={fetch} className="planets">
+        Planets
+      </button>
+      <button onClick={fetch} className="vehicles">
+        Vehicles
+      </button>
       <button>
         Favorites <span className="favorite">{favorites}</span>
       </button>
@@ -17,6 +23,6 @@ const Control = ({ favorites, people }) => {
 
 Control.propTypes = {
   favorites: PropTypes.number,
-  people: PropTypes.func
+  fetch: PropTypes.func
 };
 export default Control;
