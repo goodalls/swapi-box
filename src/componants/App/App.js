@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: [],
+      fetchedArray: [],
       crawl: {},
       favorites: [],
       errorStatus: ''
@@ -42,39 +42,41 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async () => {
-    const people = await this.fetchSwapi('https://swapi.co/api/people/');
-    const peopleCards = people.results.map(async person => {
-      let homeworldFetch = await this.fetchSwapi(person.homeworld);
-      let speciesFetch = await this.fetchSwapi(person.species);
-      return {
-        name: person.name,
-        species: speciesFetch.name,
-        homeworld: homeworldFetch.name,
-        population: homeworldFetch.population
-      };
-    });
-    const unresolvedPromises = await Promise.all(peopleCards);
-    this.setState({ people: unresolvedPromises});
+  fetchCards = async event => {
+    if (event.target.className === 'people') {
+      const people = await this.fetchSwapi('https://swapi.co/api/people/');
+      const peopleCards = people.results.map(async person => {
+        let homeworldFetch = await this.fetchSwapi(person.homeworld);
+        let speciesFetch = await this.fetchSwapi(person.species);
+        return {
+          name: person.name,
+          species: speciesFetch.name,
+          homeworld: homeworldFetch.name,
+          population: homeworldFetch.population
+        };
+      });
+      const unresolvedPromises = await Promise.all(peopleCards);
+      this.setState({ people: unresolvedPromises });
+    } else if (event.target.className === 'planets') {
+      console.log('planets clicked');
+    } else if (event.target.className === 'vehicles') {
+      console.log('vehicles clicked');
+    }
   };
 
   addToFavorites = () => {
+    console.log('favorites clicked');
     //get card object clicked on/selected
     //add object to state
   };
 
   render() {
-    return (
-      <div className="App">
+    return <div className="App">
         <Header />
-        <Control
-          favorites={this.state.favorites.length}
-          people={this.fetchPeopleCards}
-        />
-        <Container favorite={this.addToFavorites} people={this.state.people} />
+        <Control favorites={this.state.favorites.length} fetch={this.fetchCards} />
+        <Container favorite={this.addToFavorites} array={this.state.fetchedArray} />
         <Scrolling text={this.state.crawl} />
-      </div>
-    );
+      </div>;
   }
 }
 

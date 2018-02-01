@@ -3,21 +3,18 @@ import PropTypes from 'prop-types';
 import './Container.css';
 import Card from '../Card/Card';
 
-const Container = ({favorite, people}) => {
-  const peopleCards = people.map(person=>{
-    return <Card {...person} key={person.name}/>;
+const Container = ({ favorite, array }) => {
+  const mappedCards = array.map((object, index) => {
+    return <Card {...object} key={`card-number-${index}`} favorite={favorite} />;
   });
-  
-  return (
-    <div className='container'>
-      {peopleCards}
-    </div>
-  );
+console.log(mappedCards);
+
+  return <div className="container">{mappedCards}</div>;
 };
 
 Container.propTypes = {
   favorite: PropTypes.func,
-  people: PropTypes.array
+  array: PropTypes.array
 };
 
 export default Container;
