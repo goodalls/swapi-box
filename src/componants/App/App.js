@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       people: [],
+      planets: [],
+      vehicles: [],
       crawl: {},
       favorites: [],
       errorStatus: ''
@@ -59,6 +61,14 @@ class App extends Component {
       const unresolvedPromises = await Promise.all(peopleCards);
       this.setState({ people: unresolvedPromises });
     }
+    if (event.target.className === 'planets') {
+      console.log('planets clicked');
+    }
+    if (event.target.className === 'vehicles') {
+      console.log('vehicles clicked');
+    }
+
+
   };
 
   addToFavorites = () => {
