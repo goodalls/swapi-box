@@ -5,8 +5,9 @@ import Card from '../Card/Card';
 
 const Container = ({favorite, people}) => {
   const peopleCards = people.map(person=>{
-    return <Card {...person} />;
-  })
+    return <Card {...person} key={person.name}/>;
+  });
+  
   return (
     <div className='container'>
       {peopleCards}
@@ -15,7 +16,7 @@ const Container = ({favorite, people}) => {
 };
 
 Container.propTypes = {
-  favorite: PropTypes.number,
+  favorite: PropTypes.func,
   people: PropTypes.array
 };
 

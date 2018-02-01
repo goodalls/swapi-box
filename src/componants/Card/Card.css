@@ -1,15 +1,17 @@
 .card {
-  border: 2px solid yellow;
-  border-radius: 25px;
-  padding: 20px 10px;
   background-color: black;
+  border-radius: 25px;
+  border: 2px solid yellow;
   box-shadow: 2px 2px 4px #868686;
+  margin: 20px;
   min-height: 250px;
-  margin: 20px; }
+  padding: 20px 10px;
+  text-align: center; }
 
 .card:hover {
   cursor: pointer;
-  background-color: yellow; }
+  background-color: grey; }
 
 .card p {
-  color: yellow; }
+  color: yellow;
+  margin: 5%; }
