@@ -3,6 +3,8 @@ import './Control.css';
 import PropTypes from 'prop-types';
 
 const Control = ({ favorites, fetch }) => {
+
+  //add active classname veriable
   return (
     <div className="control">
       <button onClick={fetch} className="people">

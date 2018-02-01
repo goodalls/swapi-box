@@ -9,9 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: [],
-      planets: [],
-      vehicles: [],
+      fetchedArray: [],
       crawl: {},
       favorites: [],
       errorStatus: ''
@@ -19,7 +17,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    // this.fetchScrollingText();
+    this.fetchScrollingText();
   }
 
   async fetchSwapi(url) {
@@ -61,10 +59,10 @@ class App extends Component {
       const unresolvedPromises = await Promise.all(peopleCards);
       this.setState({ people: unresolvedPromises });
     }
-    if (event.target.className === 'planets') {
+    else if (event.target.className === 'planets') {
       console.log('planets clicked');
     }
-    if (event.target.className === 'vehicles') {
+    else if (event.target.className === 'vehicles') {
       console.log('vehicles clicked');
     }
 
@@ -85,7 +83,7 @@ class App extends Component {
           favorites={this.state.favorites.length}
           fetch={this.fetchCards}
         />
-        <Container favorite={this.addToFavorites} people={this.state.people} />
+        <Container favorite={this.addToFavorites} fetchedArray={this.state.fetchedArray} />
         <Scrolling text={this.state.crawl} />
       </div>
     );
