@@ -23,4 +23,24 @@ const peopleCards = async () => {
   return peopleCards;
 };
 
-export default { fetchSwapi, peopleCards };
+const planetCards = async () => {
+  const planets = await fetchSwapi('https://swapi.co/api/planets/');
+  const planetCards = planets.results.map(async planet => {
+    const residentsArray = await Promise.all(
+      planet.residents.map(async resident => {
+        const personFetch = await fetchSwapi(resident)
+        return personFetch.name;
+      })
+    );
+    return {
+      name: planet.name,
+      terrain: planet.terrain,
+      population: planet.population,
+      climate: planet.climate,
+      residents: residentsArray
+    };
+  });
+  return planetCards;
+};
+
+export default { fetchSwapi, peopleCards, planetCards };

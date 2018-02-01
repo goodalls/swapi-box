@@ -38,7 +38,7 @@ const Control = ({ favorites, cards, active }) => {
 
 Control.propTypes = {
   favorites: PropTypes.number,
-  people: PropTypes.func,
+  cards: PropTypes.func,
   active: PropTypes.string
 };
 export default Control;
