@@ -12,7 +12,8 @@ class App extends Component {
       people: [],
       crawl: {},
       favorites: [],
-      errorStatus: ''
+      errorStatus: '',
+      isActive: ''
     };
   }
 
@@ -42,20 +43,27 @@ class App extends Component {
     this.setState({ crawl: object });
   }
 
-  fetchPeopleCards = async () => {
-    const people = await this.fetchSwapi('https://swapi.co/api/people/');
-    const peopleCards = people.results.map(async person => {
-      let homeworldFetch = await this.fetchSwapi(person.homeworld);
-      let speciesFetch = await this.fetchSwapi(person.species);
-      return {
-        name: person.name,
-        species: speciesFetch.name,
-        homeworld: homeworldFetch.name,
-        population: homeworldFetch.population
-      };
-    });
-    const unresolvedPromises = await Promise.all(peopleCards);
-    this.setState({ people: unresolvedPromises});
+  fetchPeopleCards = async event => {
+    const { name } = event.target;
+    if (name === 'people') {
+      const people = await this.fetchSwapi('https://swapi.co/api/people/');
+      const peopleCards = people.results.map(async person => {
+        let homeworldFetch = await this.fetchSwapi(person.homeworld);
+        let speciesFetch = await this.fetchSwapi(person.species);
+        return {
+          name: person.name,
+          species: speciesFetch.name,
+          homeworld: homeworldFetch.name,
+          population: homeworldFetch.population
+        };
+      });
+      const unresolvedPromises = await Promise.all(peopleCards);
+      this.setState({
+        people: unresolvedPromises,
+        isActive: 'people'
+      });
+    }
+    
   };
 
   addToFavorites = () => {
@@ -70,6 +78,7 @@ class App extends Component {
         <Control
           favorites={this.state.favorites.length}
           people={this.fetchPeopleCards}
+          active={this.state.isActive}
         />
         <Container favorite={this.addToFavorites} people={this.state.people} />
         <Scrolling text={this.state.crawl} />
