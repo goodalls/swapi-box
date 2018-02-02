@@ -4,6 +4,14 @@ import './Container.css';
 import Card from '../Card/Card';
 
 const Container = (props) => {
+  // const favoriteCheck = () => {
+  //   if (props.dataArray.length){
+  //     return 'dataArray';
+  //   } else if (props.favorites.length) {
+  //     return 'favorite';
+  //   }
+  // };
+
   const peopleCards = props.dataArray.map((eachCard, index) => {
     return <Card {...eachCard} favorite={props.favorite} key={index} />;
   });

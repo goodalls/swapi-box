@@ -2,7 +2,7 @@ import React from 'react';
 import './Control.css';
 import PropTypes from 'prop-types';
 
-const Control = ({ favorites, cards, active }) => {
+const Control = ({ favorites, cards, active, fav }) => {
   return (
     <div className="control">
       <button
@@ -29,6 +29,7 @@ const Control = ({ favorites, cards, active }) => {
       <button
         name="favorites"
         className={active === 'favorites' ? 'activeClass' : 'notActive'}
+        onClick={fav}
       >
         Favorites <span className="favorite">{favorites}</span>
       </button>
@@ -39,6 +40,7 @@ const Control = ({ favorites, cards, active }) => {
 Control.propTypes = {
   favorites: PropTypes.number,
   cards: PropTypes.func,
-  active: PropTypes.string
+  active: PropTypes.string,
+  fav: PropTypes.func
 };
 export default Control;

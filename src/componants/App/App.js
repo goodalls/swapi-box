@@ -51,8 +51,8 @@ class App extends Component {
       return selected.name === elem.name;
     });
     const favoriteTest = this.testForFavorite(findFavorite, selected);
-    const stringify = JSON.stringify(favoriteTest)
-    const setItem = localStorage.setItem('favorites', stringify);
+    const stringify = JSON.stringify(favoriteTest);
+    localStorage.setItem('favorites', stringify);
     this.setState({ favorites: favoriteTest });
   };
 
@@ -69,6 +69,11 @@ class App extends Component {
     }
   };
 
+  renderFavorites = () => {
+    console.log('fav clicked');
+    //send this.state.favorites to card
+  };
+
   render() {
     return (
       <div className="App">
@@ -77,10 +82,12 @@ class App extends Component {
           favorites={this.state.favorites.length}
           cards={this.fetchCards}
           active={this.state.isActive}
+          fav={this.renderFavorites}
         />
         <Container
           favorite={this.addToFavorites}
           dataArray={this.state.fetchedArray}
+          favorites={this.state.favorites}
         />
         <Scrolling text={this.state.crawl} />
       </div>
