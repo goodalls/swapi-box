@@ -43,4 +43,17 @@ const planetCards = async () => {
   return planetCards;
 };
 
-export default { fetchSwapi, peopleCards, planetCards };
+const vehicleCards = async () => {
+  const vehicles = await fetchSwapi('https://swapi.co/api/vehicles/');
+  const vehicleCards = vehicles.results.map(async vehicle => {
+    return {
+      name: vehicle.name,
+      model: vehicle.model,
+      vehicleClass: vehicle.vehicle_class,
+      passengers: vehicle.passengers
+    };
+  });
+  return vehicleCards;
+};
+
+export default { fetchSwapi, peopleCards, planetCards, vehicleCards };

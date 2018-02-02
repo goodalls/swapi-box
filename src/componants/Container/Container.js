@@ -4,7 +4,6 @@ import './Container.css';
 import Card from '../Card/Card';
 
 const Container = (props) => {
-  console.log(props)
   const peopleCards = props.dataArray.map((eachCard, index) => {
     return <Card {...eachCard} key={index} />;
   });
