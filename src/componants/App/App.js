@@ -51,8 +51,8 @@ class App extends Component {
       return selected.name === elem.name;
     });
     const favoriteTest = this.testForFavorite(findFavorite, selected);
-    // const stringify = JSON.stringify(findFavorite)
-    // const setItem = localStorage.setItem(selected.name, stringify);
+    const stringify = JSON.stringify(favoriteTest)
+    const setItem = localStorage.setItem('favorites', stringify);
     this.setState({ favorites: favoriteTest });
   };
 
