@@ -47,24 +47,32 @@ class App extends Component {
   };
 
   addToFavorites = selected => {
-    const findFavorite = this.state.fetchedArray.filter(elem => {
-      return  selected.name === elem.name;
+    const findFavorite = this.state.fetchedArray.find(elem => {
+      return selected.name === elem.name;
     });
-    const favoriteTest = this.testForFavorite(findFavorite, selected)
-    // const stringify = JSON.stringify(findFavorite)
-    // const setItem = localStorage.setItem(selected.name, stringify);
-    this.setState({favorites: favoriteTest});
+    const favoriteTest = this.testForFavorite(findFavorite, selected);
+    const stringify = JSON.stringify(favoriteTest);
+    localStorage.setItem('favorites', stringify);
+    this.setState({ favorites: favoriteTest });
   };
 
   testForFavorite = (findFavorite, selected) => {
-    if (findFavorite.length > 1) {
-      return this.state.favorite.filter(elem => {
+    const findExists = this.state.favorites.find(elem => {
+      return selected.name === elem.name;
+    });
+    if (findExists) {
+      return this.state.favorites.filter(elem => {
         return selected.name !== elem.name;
       });
     } else {
       return [...this.state.favorites, findFavorite];
     }
-  }
+  };
+
+  renderFavorites = () => {
+    console.log('fav clicked');
+    //send this.state.favorites to card
+  };
 
   render() {
     return (
@@ -74,10 +82,12 @@ class App extends Component {
           favorites={this.state.favorites.length}
           cards={this.fetchCards}
           active={this.state.isActive}
+          fav={this.renderFavorites}
         />
         <Container
           favorite={this.addToFavorites}
           dataArray={this.state.fetchedArray}
+          favorites={this.state.favorites}
         />
         <Scrolling text={this.state.crawl} />
       </div>
