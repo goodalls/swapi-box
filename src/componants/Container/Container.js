@@ -5,9 +5,9 @@ import Card from '../Card/Card';
 
 const Container = (props) => {
   // const favoriteCheck = () => {
-  //   if (props.dataArray.length){
+  //   if (props.dataArray.length && fav button not clicked){
   //     return 'dataArray';
-  //   } else if (props.favorites.length) {
+  //   } else if (props.favorites.length && fav button clicked) {
   //     return 'favorite';
   //   }
   // };
