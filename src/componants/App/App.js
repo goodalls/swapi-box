@@ -36,31 +36,21 @@ class App extends Component {
 
   fetchCards = async event => {
     const { name } = event.target;
+    let cards;
     if (name === 'people') {
-      const people = await api.peopleCards();
-      const unresolvedPromises = await Promise.all(people);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'people'
-      });
+      cards = await api.peopleCards();
     }
-
     if (name === 'planets') {
-      const planets = await api.planetCards();
-      const unresolvedPromises = await Promise.all(planets);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'planets'
-      });
+      cards = await api.planetCards();
     }
     if (name === 'vehicles') {
-      const vehicles = await api.vehicleCards();
-      const unresolvedPromises = await Promise.all(vehicles);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'vehicles'
-      });
+      cards = await api.vehicleCards();
     }
+    const unresolvedPromises = await Promise.all(cards);
+    this.setState({
+      fetchedArray: unresolvedPromises,
+      isActive: name
+    });
   };
 
   addToFavorites = () => {
