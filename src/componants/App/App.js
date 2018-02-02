@@ -47,24 +47,27 @@ class App extends Component {
   };
 
   addToFavorites = selected => {
-    const findFavorite = this.state.fetchedArray.filter(elem => {
-      return  selected.name === elem.name;
+    const findFavorite = this.state.fetchedArray.find(elem => {
+      return selected.name === elem.name;
     });
-    const favoriteTest = this.testForFavorite(findFavorite, selected)
+    const favoriteTest = this.testForFavorite(findFavorite, selected);
     // const stringify = JSON.stringify(findFavorite)
     // const setItem = localStorage.setItem(selected.name, stringify);
-    this.setState({favorites: favoriteTest});
+    this.setState({ favorites: favoriteTest });
   };
 
   testForFavorite = (findFavorite, selected) => {
-    if (findFavorite.length > 1) {
-      return this.state.favorite.filter(elem => {
+    const findExists = this.state.favorites.find(elem => {
+      return selected.name === elem.name;
+    });
+    if (findExists) {
+      return this.state.favorites.filter(elem => {
         return selected.name !== elem.name;
       });
     } else {
       return [...this.state.favorites, findFavorite];
     }
-  }
+  };
 
   render() {
     return (
