@@ -18,7 +18,7 @@ class App extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.scrollingText();
   }
 
@@ -46,10 +46,25 @@ class App extends Component {
     });
   };
 
-  addToFavorites = () => {
-    //get card object clicked on/selected
-    //add object to state
+  addToFavorites = selected => {
+    const findFavorite = this.state.fetchedArray.filter(elem => {
+      return  selected.name === elem.name;
+    });
+    const favoriteTest = this.testForFavorite(findFavorite, selected)
+    // const stringify = JSON.stringify(findFavorite)
+    // const setItem = localStorage.setItem(selected.name, stringify);
+    this.setState({favorites: favoriteTest});
   };
+
+  testForFavorite = (findFavorite, selected) => {
+    if (findFavorite.length > 1) {
+      return this.state.favorite.filter(elem => {
+        return selected.name !== elem.name;
+      });
+    } else {
+      return [...this.state.favorites, findFavorite];
+    }
+  }
 
   render() {
     return (

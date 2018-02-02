@@ -11,7 +11,7 @@ const Card = props => {
         <p>Homeworld: {homeworld}</p>
         <p>Population: {population}</p>
         <p>Species{species}</p>
-        <button onClick={() => favorite()}>favorite</button>
+        <button onClick={() => favorite({name})}>favorite</button>
       </div>
     );
   } else if (props.terrain) {
@@ -23,7 +23,7 @@ const Card = props => {
         <p>Population: {population}</p>
         <p>Climate: {climate}</p>
         <p>residents: {residents}</p>
-        <button onClick={() => favorite()}>favorite</button>
+        <button onClick={() => favorite({name})}>favorite</button>
       </div>
     );
   } else if (props.model) {
@@ -34,7 +34,7 @@ const Card = props => {
         <p>Model: {model}</p>
         <p>Class: {vehicleClass}</p>
         <p>Passengers: {passengers}</p>
-        <button onClick={() => favorite()}>favorite</button>
+        <button onClick={() => favorite({name})}>favorite</button>
       </div>
     );
   }
