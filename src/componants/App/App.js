@@ -19,48 +19,31 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    // this.fetchScrollingText();
+    this.scrollingText();
   }
 
-  async fetchScrollingText() {
-    const random = Math.round(Math.random() * 7);
-    const crawl = await api.fetchSwapi(`https://swapi.co/api/films/${random}`);
-    const object = {
-      title: crawl.title,
-      episodeId: crawl.episode_id,
-      openingCrawl: crawl.opening_crawl,
-      releaseDate: crawl.release_date
-    };
-    this.setState({ crawl: object });
+  async scrollingText() {
+    const crawl = await api.fetchScrollingText();
+    this.setState({ crawl });
   }
 
   fetchCards = async event => {
     const { name } = event.target;
+    let cards;
     if (name === 'people') {
-      const people = await api.peopleCards();
-      const unresolvedPromises = await Promise.all(people);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'people'
-      });
+      cards = await api.peopleCards();
     }
-
     if (name === 'planets') {
-      const planets = await api.planetCards();
-      const unresolvedPromises = await Promise.all(planets);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'planets'
-      });
+      cards = await api.planetCards();
     }
     if (name === 'vehicles') {
-      const vehicles = await api.vehicleCards();
-      const unresolvedPromises = await Promise.all(vehicles);
-      this.setState({
-        fetchedArray: unresolvedPromises,
-        isActive: 'vehicles'
-      });
+      cards = await api.vehicleCards();
     }
+    const unresolvedPromises = await Promise.all(cards);
+    this.setState({
+      fetchedArray: unresolvedPromises,
+      isActive: name
+    });
   };
 
   addToFavorites = () => {
