@@ -5,7 +5,7 @@ import Card from '../Card/Card';
 
 const Container = (props) => {
   const peopleCards = props.dataArray.map((eachCard, index) => {
-    return <Card {...eachCard} key={index} />;
+    return <Card {...eachCard} favorite={props.favorite} key={index} />;
   });
 
   return <div className="container">{peopleCards}</div>;
