@@ -43,14 +43,22 @@ class App extends Component {
         fetchedArray: unresolvedPromises,
         isActive: 'people'
       });
-    } 
-    
+    }
+
     if (name === 'planets') {
       const planets = await api.planetCards();
       const unresolvedPromises = await Promise.all(planets);
       this.setState({
         fetchedArray: unresolvedPromises,
         isActive: 'planets'
+      });
+    }
+    if (name === 'vehicles') {
+      const vehicles = await api.vehicleCards();
+      const unresolvedPromises = await Promise.all(vehicles);
+      this.setState({
+        fetchedArray: unresolvedPromises,
+        isActive: 'vehicles'
       });
     }
   };
@@ -69,7 +77,10 @@ class App extends Component {
           cards={this.fetchCards}
           active={this.state.isActive}
         />
-        <Container favorite={this.addToFavorites} dataArray={this.state.fetchedArray} />
+        <Container
+          favorite={this.addToFavorites}
+          dataArray={this.state.fetchedArray}
+        />
         <Scrolling text={this.state.crawl} />
       </div>
     );
