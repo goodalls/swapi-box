@@ -19,19 +19,12 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    // this.fetchScrollingText();
+    this.scrollingText();
   }
 
-  async fetchScrollingText() {
-    const random = Math.round(Math.random() * 7);
-    const crawl = await api.fetchSwapi(`https://swapi.co/api/films/${random}`);
-    const object = {
-      title: crawl.title,
-      episodeId: crawl.episode_id,
-      openingCrawl: crawl.opening_crawl,
-      releaseDate: crawl.release_date
-    };
-    this.setState({ crawl: object });
+  async scrollingText() {
+    const crawl = await api.fetchScrollingText();
+    this.setState({ crawl });
   }
 
   fetchCards = async event => {
