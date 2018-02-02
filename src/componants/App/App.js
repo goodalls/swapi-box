@@ -37,7 +37,7 @@ class App extends Component {
   fetchCards = async event => {
     const { name } = event.target;
     if (name === 'people') {
-      const people = await api.peopleCards()
+      const people = await api.peopleCards();
       const unresolvedPromises = await Promise.all(people);
       this.setState({
         fetchedArray: unresolvedPromises,
@@ -46,7 +46,7 @@ class App extends Component {
     } 
     
     if (name === 'planets') {
-      const planets = await api.planetCards()
+      const planets = await api.planetCards();
       const unresolvedPromises = await Promise.all(planets);
       this.setState({
         fetchedArray: unresolvedPromises,

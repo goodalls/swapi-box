@@ -28,7 +28,7 @@ const planetCards = async () => {
   const planetCards = planets.results.map(async planet => {
     const residentsArray = await Promise.all(
       planet.residents.map(async resident => {
-        const personFetch = await fetchSwapi(resident)
+        const personFetch = await fetchSwapi(resident);
         return personFetch.name;
       })
     );
