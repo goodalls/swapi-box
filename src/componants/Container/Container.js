@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import './Container.css';
 import Card from '../Card/Card';
 
-const Container = ({ favorite, dataArray }) => {
-  const peopleCards = dataArray.map(person => {
-    return <Card {...person} key={person.name} />;
+const Container = (props) => {
+  console.log(props)
+  const peopleCards = props.dataArray.map((eachCard, index) => {
+    return <Card {...eachCard} key={index} />;
   });
 
   return <div className="container">{peopleCards}</div>;
@@ -13,7 +14,7 @@ const Container = ({ favorite, dataArray }) => {
 
 Container.propTypes = {
   favorite: PropTypes.func,
-  people: PropTypes.array
+  dataArray: PropTypes.array
 };
 
 export default Container;
