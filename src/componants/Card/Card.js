@@ -3,6 +3,13 @@ import './Card.css';
 import PropTypes from 'prop-types';
 
 const Card = props => {
+  let klass;
+  const favorited = props.favorites.forEach(elem => {
+    if (elem.name === props.name) {
+      klass ='favorited';
+    }
+  });
+
   if (props.species) {
     const { name, homeworld, population, species, favorite } = props;
     return (
@@ -11,7 +18,9 @@ const Card = props => {
         <p>Homeworld: {homeworld}</p>
         <p>Population: {population}</p>
         <p>Species{species}</p>
-        <button onClick={() => favorite({name})}>favorite</button>
+        <button onClick={() => favorite({ name })} className={klass}>
+          favorite
+        </button>
       </div>
     );
   } else if (props.terrain) {
@@ -23,7 +32,9 @@ const Card = props => {
         <p>Population: {population}</p>
         <p>Climate: {climate}</p>
         <p>residents: {residents}</p>
-        <button onClick={() => favorite({name})}>favorite</button>
+        <button onClick={() => favorite({ name })} className={klass}>
+          favorite
+        </button>
       </div>
     );
   } else if (props.model) {
@@ -34,7 +45,9 @@ const Card = props => {
         <p>Model: {model}</p>
         <p>Class: {vehicleClass}</p>
         <p>Passengers: {passengers}</p>
-        <button onClick={() => favorite({name})}>favorite</button>
+        <button onClick={() => favorite({ name })} className={klass}>
+          favorite
+        </button>
       </div>
     );
   }

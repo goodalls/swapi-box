@@ -83,13 +83,13 @@ class App extends Component {
           cards={this.fetchCards}
           active={this.state.isActive}
           fav={this.renderFavorites}
-        />
+        />{' '}
         <Container
           favorite={this.addToFavorites}
           dataArray={this.state.fetchedArray}
           favorites={this.state.favorites}
-        />
-        <Scrolling text={this.state.crawl} />
+        />{' '}
+        <Scrolling text={this.state.crawl} />{' '}
       </div>
     );
   }
