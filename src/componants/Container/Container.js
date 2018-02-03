@@ -13,7 +13,7 @@ const Container = (props) => {
   // };
 
   const peopleCards = props.dataArray.map((eachCard, index) => {
-    return <Card {...eachCard} favorite={props.favorite} key={index} />;
+    return <Card {...eachCard} favorite={props.favorite} key={index} favorites={props.favorites} />;
   });
 
   return <div className="container">{peopleCards}</div>;
@@ -21,7 +21,8 @@ const Container = (props) => {
 
 Container.propTypes = {
   favorite: PropTypes.func,
-  dataArray: PropTypes.array
+  dataArray: PropTypes.array,
+  favorites: PropTypes.array
 };
 
 export default Container;
