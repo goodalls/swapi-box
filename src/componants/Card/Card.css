@@ -4,9 +4,9 @@
   border: 2px solid yellow;
   box-shadow: 2px 2px 4px #868686;
   margin: 20px;
-  min-height: 250px;
   padding: 20px 10px;
-  text-align: center; }
+  text-align: center;
+  display: grid; }
 
 .card:hover {
   cursor: pointer;
@@ -23,3 +23,8 @@
 .card .favorited {
   background-color: yellow;
   color: black; }
+
+.card h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: yellow; }

@@ -14,7 +14,7 @@ const Card = props => {
     const { name, homeworld, population, species, favorite } = props;
     return (
       <div className="card">
-        <p>{name}</p>
+        <h3>{name}</h3>
         <p>Homeworld: {homeworld}</p>
         <p>Population: {population}</p>
         <p>Species{species}</p>
@@ -27,8 +27,8 @@ const Card = props => {
     const { name, terrain, population, climate, residents, favorite } = props;
     return (
       <div className="card">
-        <p>{name}</p>
-        <p>{terrain}</p>
+        <h3>{name}</h3>
+        <p>Terrain: {terrain}</p>
         <p>Population: {population}</p>
         <p>Climate: {climate}</p>
         <p>residents: {residents}</p>
@@ -41,7 +41,7 @@ const Card = props => {
     const { name, model, vehicleClass, passengers, favorite } = props;
     return (
       <div className="card">
-        <p>{name}</p>
+        <h3>{name}</h3>
         <p>Model: {model}</p>
         <p>Class: {vehicleClass}</p>
         <p>Passengers: {passengers}</p>
