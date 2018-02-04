@@ -102,7 +102,7 @@ class App extends Component {
           dataArray={this.state.fetchedArray}
           favorites={this.state.favorites}
         />
-        <Scrolling crawlObject={this.state.crawl} />
+        <Scrolling {...this.state.crawl} />
       </div>
     );
   }
