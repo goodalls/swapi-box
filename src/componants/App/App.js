@@ -20,11 +20,17 @@ class App extends Component {
 
   componentDidMount() {
     this.scrollingText();
+    this.loadStorageFavorites();
   }
 
   async scrollingText() {
     const crawl = await api.fetchScrollingText();
     this.setState({ crawl });
+  }
+
+  loadStorageFavorites() {
+    //if this.state.favorites.length
+    //add favorites in storage and set them to state
   }
 
   fetchCards = async event => {

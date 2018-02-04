@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const Card = props => {
   let klass;
-  const favorited = props.favorites.forEach(elem => {
+  props.favorites.forEach(elem => {
     if (elem.name === props.name) {
       klass ='favorited';
     }
