@@ -59,7 +59,7 @@ const vehicleCards = async () => {
 const fetchScrollingText = async () => {
   const random = Math.round(Math.random() * 7);
   const crawl = await fetchSwapi(`https://swapi.co/api/films/${random}`);
-  const object = await{
+  const object = await {
     title: crawl.title,
     episodeId: crawl.episode_id,
     openingCrawl: crawl.opening_crawl,
@@ -68,4 +68,10 @@ const fetchScrollingText = async () => {
   return object;
 };
 
-export default { fetchSwapi, peopleCards, planetCards, vehicleCards, fetchScrollingText };
+export default {
+  fetchSwapi,
+  peopleCards,
+  planetCards,
+  vehicleCards,
+  fetchScrollingText
+};
