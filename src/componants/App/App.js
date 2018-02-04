@@ -76,7 +76,7 @@ class App extends Component {
     } else if (localStorage.length) {
       const local = localStorage.getItem('favorites');
       const storedFavs = JSON.parse(local);
-      this.setState({favorites: storedFavs});
+      this.setState({ favorites: storedFavs, isActive: 'favorites' });
     }
   };
 
