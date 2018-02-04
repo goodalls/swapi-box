@@ -6,9 +6,9 @@ describe('Container', () => {
   let mockArray;
   let wrapper;
 
-  beforeEach('', () => {
+  beforeEach(() => {
     mockArray = [{}];
-    wrapper = shallow(<Container dataArray={mockArray} favorites={mockArray} />);
+    wrapper = shallow(<Container dataArray={mockArray}  />);
   });
 
   it('should match snapshot', () => {

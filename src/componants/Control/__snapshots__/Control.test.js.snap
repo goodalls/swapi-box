@@ -1,0 +1,265 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Control should match snapshot 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Control />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <button
+          className="notActive"
+          name="people"
+          onClick={undefined}
+>
+          People
+</button>,
+        <button
+          className="notActive"
+          name="planets"
+          onClick={undefined}
+>
+          Planets
+</button>,
+        <button
+          className="notActive"
+          name="vehicles"
+          onClick={undefined}
+>
+          Vehicles
+</button>,
+        <button
+          className="notActive"
+          name="favorites"
+          onClick={undefined}
+>
+          Favorites 
+          <span
+                    className="favorite"
+          />
+</button>,
+      ],
+      "className": "control",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "People",
+          "className": "notActive",
+          "name": "people",
+          "onClick": undefined,
+        },
+        "ref": null,
+        "rendered": "People",
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Planets",
+          "className": "notActive",
+          "name": "planets",
+          "onClick": undefined,
+        },
+        "ref": null,
+        "rendered": "Planets",
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Vehicles",
+          "className": "notActive",
+          "name": "vehicles",
+          "onClick": undefined,
+        },
+        "ref": null,
+        "rendered": "Vehicles",
+        "type": "button",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            "Favorites ",
+            <span
+              className="favorite"
+/>,
+          ],
+          "className": "notActive",
+          "name": "favorites",
+          "onClick": undefined,
+        },
+        "ref": null,
+        "rendered": Array [
+          "Favorites ",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": undefined,
+              "className": "favorite",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "span",
+          },
+        ],
+        "type": "button",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <button
+            className="notActive"
+            name="people"
+            onClick={undefined}
+>
+            People
+</button>,
+          <button
+            className="notActive"
+            name="planets"
+            onClick={undefined}
+>
+            Planets
+</button>,
+          <button
+            className="notActive"
+            name="vehicles"
+            onClick={undefined}
+>
+            Vehicles
+</button>,
+          <button
+            className="notActive"
+            name="favorites"
+            onClick={undefined}
+>
+            Favorites 
+            <span
+                        className="favorite"
+            />
+</button>,
+        ],
+        "className": "control",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "People",
+            "className": "notActive",
+            "name": "people",
+            "onClick": undefined,
+          },
+          "ref": null,
+          "rendered": "People",
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Planets",
+            "className": "notActive",
+            "name": "planets",
+            "onClick": undefined,
+          },
+          "ref": null,
+          "rendered": "Planets",
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": "Vehicles",
+            "className": "notActive",
+            "name": "vehicles",
+            "onClick": undefined,
+          },
+          "ref": null,
+          "rendered": "Vehicles",
+          "type": "button",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              "Favorites ",
+              <span
+                className="favorite"
+/>,
+            ],
+            "className": "notActive",
+            "name": "favorites",
+            "onClick": undefined,
+          },
+          "ref": null,
+          "rendered": Array [
+            "Favorites ",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": undefined,
+                "className": "favorite",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "span",
+            },
+          ],
+          "type": "button",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactFifteenAdapter {
+      "options": Object {
+        "supportPrevContextArgumentOfComponentDidUpdate": true,
+      },
+    },
+  },
+}
+`;
