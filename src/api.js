@@ -37,7 +37,7 @@ const planetCards = async () => {
       terrain: planet.terrain,
       population: planet.population,
       climate: planet.climate,
-      residents: residentsArray
+      residents: residentsArray.join(', ')
     };
   });
   return planetCards;
