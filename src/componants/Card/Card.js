@@ -50,6 +50,8 @@ const Card = props => {
         </button>
       </div>
     );
+  } else {
+    return null;
   }
 };
 Card.propTypes = {
