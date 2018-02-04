@@ -20,7 +20,9 @@ class App extends Component {
 
   componentDidMount() {
     this.scrollingText();
-    this.loadStorageFavorites();
+
+    this.renderFavorites();
+
   }
 
   async scrollingText() {
@@ -76,9 +78,13 @@ class App extends Component {
   };
 
   renderFavorites = () => {
-    console.log('fav clicked');
-    //should clear dataArray state when clicked
-    //send this.state.favorites to card
+    if (this.state.favorites.length) {
+      this.setState({fetchedArray: []});
+    } else if (localStorage.length) {
+      const local = localStorage.getItem('favorites');
+      const storedFavs = JSON.parse(local);
+      this.setState({ favorites: storedFavs, isActive: 'favorites' });
+    }
   };
 
   render() {
