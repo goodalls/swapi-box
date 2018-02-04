@@ -20,17 +20,12 @@ class App extends Component {
 
   componentDidMount() {
     this.scrollingText();
-    this.loadStorageFavorites();
+    this.renderFavorites();
   }
 
   async scrollingText() {
     const crawl = await api.fetchScrollingText();
     this.setState({ crawl });
-  }
-
-  loadStorageFavorites() {
-    //if this.state.favorites.length
-    //add favorites in storage and set them to state
   }
 
   fetchCards = async event => {
@@ -76,9 +71,13 @@ class App extends Component {
   };
 
   renderFavorites = () => {
-    console.log('fav clicked');
-    //should clear dataArray state when clicked
-    //send this.state.favorites to card
+    if (this.state.favorites.length) {
+      this.setState({fetchedArray: []});
+    } else if (localStorage.length) {
+      const local = localStorage.getItem('favorites');
+      const storedFavs = JSON.parse(local);
+      this.setState({favorites: storedFavs});
+    }
   };
 
   render() {
