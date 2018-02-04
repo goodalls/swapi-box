@@ -8,9 +8,9 @@ describe('Card', () => {
   let wrapper;
 
   beforeEach(() => {
-    mockFav = {name: 'george'};
-    mockFavArray = [{name: 'jefferson'}];
-    wrapper = shallow(<Card favorite={mockFav} favorites={mockFavArray}/>);
+    mockFav = { name: 'george' };
+    mockFavArray = [{ name: 'jefferson' }];
+    wrapper = shallow(<Card favorite={mockFav} favorites={mockFavArray} />);
   });
 
   it('should match snapshot', () => {
@@ -19,6 +19,21 @@ describe('Card', () => {
 
   it('should add favorited to class', () => {
     mockFavArray = [{ name: 'george' }];
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match snapshot of people card', () => {
+    mockFav = { name: 'george', species: 'human' };
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match snapshot of planet card', () => {
+    mockFav = { name: 'george', terrain: 'desert' };
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match snapshot of vehicle card', () => {
+    mockFav = { name: 'george', model: '22 speeder' };
     expect(wrapper).toMatchSnapshot();
   });
 });
