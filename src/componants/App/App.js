@@ -71,6 +71,7 @@ class App extends Component {
 
   renderFavorites = () => {
     console.log('fav clicked');
+    //should clear dataArray state when clicked
     //send this.state.favorites to card
   };
 

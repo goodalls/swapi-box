@@ -4,15 +4,9 @@ import './Container.css';
 import Card from '../Card/Card';
 
 const Container = (props) => {
-  // const favoriteCheck = () => {
-  //   if (props.dataArray.length && fav button not clicked){
-  //     return 'dataArray';
-  //   } else if (props.favorites.length && fav button clicked) {
-  //     return 'favorite';
-  //   }
-  // };
+  const favoriteCheck = props.dataArray.length? 'dataArray':'favorite';
 
-  const peopleCards = props.dataArray.map((eachCard, index) => {
+  const peopleCards = props[favoriteCheck].map((eachCard, index) => {
     return <Card {...eachCard} favorite={props.favorite} key={index} favorites={props.favorites} />;
   });
 
