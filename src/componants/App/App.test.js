@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { shallow } from 'enzyme';
 
+
 describe('App', () => {
   let mockEvent;
-  let renderedComponent;
+  let wrapper;
   let mockFetch;
   let mockFunction;
 
@@ -15,17 +16,17 @@ describe('App', () => {
   });
 
   beforeEach(() => {
-    renderedComponent = shallow(<App />);
+    wrapper = shallow(<App />);
   });
 
   it.skip('should match the snapshot', () => {
-    expect(renderedComponent).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 
   it.skip('will call scrolling text', async () => {
-    await renderedComponent.instance().scrollingText();
-    await renderedComponent.update();
-    expect(renderedComponent.scrollingText).toHaveBeenCalled();
+    const scroll = await wrapper.instance().scrollingText();
+   
+    expect(scroll).toHaveBeenCalled();
     
   });
 

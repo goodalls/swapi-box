@@ -1,11 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Scrolling from './Scrolling';
+import { shallow } from 'enzyme';
 
 describe('Scrolling', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Scrolling />, div);
-    ReactDOM.unmountComponentAtNode(div);
+  it('should match snapshot', () => {
+    const wrapper = shallow(<Scrolling />);
+    expect(wrapper).toMatchSnapshot();
   });
 });
