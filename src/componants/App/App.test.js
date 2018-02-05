@@ -3,18 +3,13 @@ import App from './App';
 import { shallow } from 'enzyme';
 
 describe('App', () => {
-  let mockEvent;
   let wrapper;
-  let mockFetch;
-  let mockFunction;
-
-  beforeAll(() => {
-    mockFunction = jest.fn();
-    mockEvent = { preventDefault: jest.fn() };
-  });
-
+  /* eslint-disable */
+  let mockEvent;
+  /* eslint-enable */
   beforeEach(() => {
     wrapper = shallow(<App />);
+    mockEvent = { preventDefault: jest.fn() };
   });
 
   it.skip('should match the snapshot', () => {
@@ -46,7 +41,7 @@ describe('App', () => {
 
     it('should set active state name', () => {});
   });
-  
+
   describe('addToFavorites', () => {
     it('should call this.testForFavorite', () => {});
 
