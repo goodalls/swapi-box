@@ -2,13 +2,9 @@ import api from './api';
 
 
 describe('api', () => {
-  let mockFunction;
-  let mockEvent;
   let mockURL;
 
-  beforeAll(() => {
-    mockFunction = jest.fn();
-    mockEvent = { preventDefault: jest.fn() };
+  beforeEach(() => {
     mockURL = 'http://test.com/';
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
