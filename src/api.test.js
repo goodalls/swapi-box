@@ -1,7 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import api from './api';
-import { shallow } from 'enzyme';
+
 
 describe('api', () => {
   let mockFunction;
