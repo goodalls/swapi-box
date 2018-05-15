@@ -4,18 +4,40 @@ const fetchSwapi = async url => {
     const response = await fetched.json();
     return response;
   } catch (error) {
-    return 'fetchSwapi Error';
+    return 'fetchSwapi Error'+ error;
   }
 };
 
 const peopleCards = async () => {
   const people = await fetchSwapi('https://swapi.co/api/people/');
-  const peopleCards = people.results.map(async person => {
-    const homeworldFetch = await fetchSwapi(person.homeworld);
-    const speciesFetch = await fetchSwapi(person.species);
+  const peopleCards = people.results.map(person => {
     return {
       name: person.name,
+      species: person.species,
+      homeworld: person.homeworld
+    };
+  });
+  return species(peopleCards);
+};
+
+const species = async (people) => {
+  const peopleCards = people.results.map(async person => {
+    const speciesFetch = await fetchSwapi(person.species);
+    return {
+      name,
       species: speciesFetch.name,
+      homeworld: person.homeworld
+    };
+  });
+  return homeworld(peopleCards);
+};
+
+const homeworld = async (people) => {
+  const peopleCards = people.results.map(async person => {
+    const homeworldFetch = await fetchSwapi(person.homeworld);
+    return {
+      name,
+      species,
       homeworld: homeworldFetch.name,
       population: homeworldFetch.population
     };
