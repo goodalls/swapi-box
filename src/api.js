@@ -58,25 +58,27 @@ const planetCards = async () => {
       residents: planet.residents
     };
   });
-  console.log(planetCards);
-  // return residents(planetCards);
+  return residents(planetCards);
 };
 
-// const residents = async() => {
-//   const residentsArray = await Promise.all(
-//     planet.map(async resident => {
-//       const personFetch = await fetchSwapi(resident);
-//       return {
-//         name: planet.name,
-//         terrain: planet.terrain,
-//         population: planet.population,
-//         climate: planet.climate,
-//         residents: personFetch.name;
-//       };
-//     })
-//   );
-//   return residentsArray.join(', ');
-// };
+const residents = async (planet) => {
+  const planetCards = planet.map(async planet => {
+
+    const residentsArray = await Promise.all(planet.residents.map(async resident => {
+      const personFetch = await fetchSwapi(resident);
+      return personFetch.name;
+    }));
+
+    return {
+      name: planet.name,
+      terrain: planet.terrain,
+      population: planet.population,
+      climate: planet.climate,
+      residents: residentsArray.join(' | ')
+    };
+  });
+  return planetCards;
+};
 
 const vehicleCards = async () => {
   const vehicles = await fetchSwapi('https://swapi.co/api/vehicles/');
