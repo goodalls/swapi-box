@@ -4,7 +4,7 @@ const fetchSwapi = async url => {
     const response = await fetched.json();
     return response;
   } catch (error) {
-    return 'fetchSwapi Error'+ error;
+    return 'fetchSwapi Error' + error;
   }
 };
 
@@ -20,6 +20,7 @@ const peopleCards = async () => {
   return species(peopleCards);
 };
 
+//peopleCards Helper Function
 const species = async (people) => {
   const peopleCards = await Promise.all(people.map(async person => {
     const speciesFetch = await fetchSwapi(person.species);
@@ -32,6 +33,7 @@ const species = async (people) => {
   return homeworld(peopleCards);
 };
 
+//peopleCards Helper Function
 const homeworld = async (people) => {
   const peopleCards = await Promise.all(people.map(async person => {
     const homeworldFetch = await fetchSwapi(person.homeworld);
@@ -42,30 +44,39 @@ const homeworld = async (people) => {
       population: homeworldFetch.population
     };
   }));
-  console.log(peopleCards);
-  
   return peopleCards;
 };
 
 const planetCards = async () => {
   const planets = await fetchSwapi('https://swapi.co/api/planets/');
-  const planetCards = planets.results.map(async planet => {
-    const residentsArray = await Promise.all(
-      planet.residents.map(async resident => {
-        const personFetch = await fetchSwapi(resident);
-        return personFetch.name;
-      })
-    );
+  const planetCards = planets.results.map(planet => {
     return {
       name: planet.name,
       terrain: planet.terrain,
       population: planet.population,
       climate: planet.climate,
-      residents: residentsArray.join(', ')
+      residents: planet.residents
     };
   });
-  return planetCards;
+  console.log(planetCards);
+  // return residents(planetCards);
 };
+
+// const residents = async() => {
+//   const residentsArray = await Promise.all(
+//     planet.map(async resident => {
+//       const personFetch = await fetchSwapi(resident);
+//       return {
+//         name: planet.name,
+//         terrain: planet.terrain,
+//         population: planet.population,
+//         climate: planet.climate,
+//         residents: personFetch.name;
+//       };
+//     })
+//   );
+//   return residentsArray.join(', ');
+// };
 
 const vehicleCards = async () => {
   const vehicles = await fetchSwapi('https://swapi.co/api/vehicles/');
