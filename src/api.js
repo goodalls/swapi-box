@@ -10,10 +10,10 @@ const fetchSwapi = async url => {
 
 const peopleCards = async () => {
   const people = await fetchSwapi('https://swapi.co/api/people/');
-  const peopleCards = people.results.map(person => {
+  const peopleCards = await people.results.map(person => {
     return {
       name: person.name,
-      species: person.species,
+      species: person.species[0],
       homeworld: person.homeworld
     };
   });
@@ -21,27 +21,29 @@ const peopleCards = async () => {
 };
 
 const species = async (people) => {
-  const peopleCards = people.results.map(async person => {
+  const peopleCards = await Promise.all(people.map(async person => {
     const speciesFetch = await fetchSwapi(person.species);
     return {
-      name,
+      name: person.name,
       species: speciesFetch.name,
       homeworld: person.homeworld
     };
-  });
+  }));
   return homeworld(peopleCards);
 };
 
 const homeworld = async (people) => {
-  const peopleCards = people.results.map(async person => {
+  const peopleCards = await Promise.all(people.map(async person => {
     const homeworldFetch = await fetchSwapi(person.homeworld);
     return {
-      name,
-      species,
+      name: person.name,
+      species: person.name,
       homeworld: homeworldFetch.name,
       population: homeworldFetch.population
     };
-  });
+  }));
+  console.log(peopleCards);
+  
   return peopleCards;
 };
 
